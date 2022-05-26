@@ -4,5 +4,5 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Subject {
-    String name;
+    private String subjectName;
 }

@@ -4,5 +4,5 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Group {
-    String name;
+    private String groupName;
 }
