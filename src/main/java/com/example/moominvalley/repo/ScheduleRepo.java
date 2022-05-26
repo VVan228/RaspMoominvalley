@@ -17,8 +17,7 @@ public interface ScheduleRepo extends JpaRepository<Day, Integer> {
             "and para.day= :day")
     Day getScheduleForDayByTeacher(@Param("tN") String teacherName,
                                    @Param("day") int dayId);
-    @Query("select para from Para as para " +
-            "where para.auditories.audienceName= :aN " +
+    @Query("select para from Para as para join para.auditories a where a.audienceName=:aN " +
             "and para.day= :day")
     Day getScheduleForDayByAudience(@Param("aN") String ayName,
                                     @Param("day") int dayId);
