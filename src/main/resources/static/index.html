@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>DHTMLX Sсheduler example</title>
+    <meta charset="utf-8">
+    <!-- scheduler -->
+
+    <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js" charset="utf-8"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+    <link href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css" rel="stylesheet" type="text/css"
+        charset="utf-8">
+    <link href="style.css" rel="stylesheet" type="text/css" charset="utf-8">
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <img src="a.png" alt="Diagram" class="img">
+
+        <time class="clock">
+            <span class="clock__hand clock__hand--hour"></span>
+        </time>
+
+
+    </div>
+
+
+
+    <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+        <div class="dhx_cal_navline">
+            <div class="dhx_cal_prev_button">&nbsp;</div>
+            <div class="dhx_cal_next_button">&nbsp;</div>
+            <div class="dhx_cal_today_button"></div>
+            <div class="dhx_cal_date"></div>
+
+            <div class="dhx_cal_tab" name="day_tab" target="day"></div>
+
+            <div class="dhx_cal_tab" name="week_tab"></div>
+
+        </div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
+
+
+    </div>
+    <script>
+        //https://docs.dhtmlx.com/scheduler/loading_data.html  -- ЭТО ПО РАБОТЕ С ДАННЫМИ, НАДО ПОСМОТРЕТЬ
+        // set format of dates in the data source
+        scheduler.form_blocks["my_link"] = {
+            render: function (config) { // config- section configuration object
+                return "<div class='dhx_cal_ltext' style='height:50;'>" +
+                    "<a href=" + {} + ">" + {} + "</a></div>";
+            },
+            set_value: function (node, value, ev, config) {
+                node.querySelector("textarea").value = value || "";
+            },
+            get_value: function (node, ev, config) {
+                return node.querySelector("textarea").value;
+            },
+            focus: function (node) {
+                node.querySelector("textarea").focus();
+            }
+        };
+        scheduler.config.lightbox.sections = [
+            { name: "Group", height: 50, map_to: "group", type: "my_link", focus: true },
+            { name: "Teacher", height: 50, map_to: "teacher", type: "my_link" },
+            { name: "Room", height: 50, map_to: "room", type: "my_link" },
+            { name: "time", height: 50, type: "time", map_to: "auto" }
+        ];
+        scheduler.config.readonly = false;
+        scheduler.config.separate_short_events = true;
+        scheduler.config.hour_size_px = 100;
+        scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+        scheduler.config.first_hour = 0;//СЮДА ОТДАТЬ НАЧАЛО ДНЯ
+        //МИНУТЫ В ЭТОМ ВИДЕ НЕ ПОСТАВИТЬ, ТАК ЧТО НАДО ОТДАВАТЬ ЦЕЛОЕ ЧИСЛО(ПАРЫ С 8:15 - ОТДАВАТЬ 8)
+        scheduler.config.last_hour = 23 + 1;//СЮДА ОТДАТЬ ПОСЛЕДНИЙ ЧАС И ПЛЮС 1))))))
+        scheduler.init('scheduler_here', new Date(), "day");
+
+        scheduler.load("http://localhost:3000/data", "json");
+
+        var dp = scheduler.createDataProcessor("http://localhost:3000/data");
+        dp.init(scheduler);
+        // use RESTful API on the backend
+        dp.setTransactionMode("REST");
+
+
+
+        var date = new Date(),
+            hours = date.getHours(),
+            minutes = date.getMinutes(),
+            seconds = date.getSeconds();
+
+
+
+        var hoursStart = 19, // Cюдой час начала занятий
+            minutesStart = 5, // Сюдой минуты начала занятий
+
+            hoursEnd = 19, //Сюды час конца занятий 
+            minutesEnd = 7; // Сюды минуты конца занятий
+
+        var timeStartStudyDay = hoursStart * 3600 + minutesStart * 60,
+
+            timeEndStudyDay = hoursEnd * 3600 + minutesEnd * 60,
+
+            timeStudy = timeEndStudyDay - timeStartStudyDay,
+
+            currentTimeSec = hours * 3600 + minutes * 60 + seconds,
+
+            curretDegree = (currentTimeSec - timeStartStudyDay) * 360 / timeStudy;
+
+        console.log("timeStartStudy", timeStartStudyDay);
+        console.log("timeEndSt", timeEndStudyDay);
+        console.log("timeStud", timeStudy);
+        console.log("currentTime", currentTimeSec);
+        console.log("curretDegree", curretDegree);
+
+
+
+
+        var style = document.createElement('style');
+
+        style.type = 'text/css';
+        style.innerHTML = '\
+@keyframes clock-hand-rotate--hour {\
+from {transform: rotate(' + curretDegree + 'deg)}\
+to {transform: rotate(' + (curretDegree + 360) + 'deg)}\
+}\
+.clock__hand--hour {\
+animation: clock-hand-rotate--hour ' + timeStudy + 's linear infinite;\
+}\
+}';
+
+        document.getElementsByTagName('head')[0].appendChild(style);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.dhx_scheduler_day {
+    width: 50% !important;
+    height: 100vh !important;
+}
+
+#time_place {
+    width: 50%;
+    position: absolute;
+    right: 0;
+
+}
+
+.dhx_delete_btn,
+.dhx_save_btn,
+.dhx_cancel_btn {
+    visibility: hidden;
+}
+
+#wrapper {
+   
+    width: 50vw;
+    height: 50vw;
+    position: absolute;
+    margin-left: auto;
+    right: 0;
+    
+}
+.img{
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+
+.clock {
+    
+    display: inline-block;
+    border-radius: 0.5em;
+    font-size: 50vw;
+    overflow: hidden;
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+.clock::after {
+    content: '';
+    border-radius: 0.5em;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    position: absolute;
+    font-size: 0.01em;
+    display: block;
+    height: 1em;
+    width: 1em;
+    
+}
+
+.clock__hand-container,
+.clock__hand,
+.clock__stroke {
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    font-size: inherit;
+    position: absolute;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    left: 50%;
+    top: 50%;
+}
+
+.clock__stroke::after {
+    content: "";
+    border-radius: 0 0 0.02em 0.02em;
+    background-color: transparent;
+    margin-left: -0.01em;
+    position: absolute;
+    display: block;
+    height: 0.05em;
+    width: 0.02em;
+    top: 0.02em;
+    left: 50%;
+}
+
+.clock__hand--hour::after {
+    content: "";
+    border-radius: 0.01em 0.01em 0.005em 0.005em;
+    background-color: #f00;
+    margin-left: -0.005em;
+    font-size: inherit;
+    position: absolute;
+    display: block;
+    height: 0.46em;
+    width: 0.01em;
+    bottom: 50%;
+    left: 50%;
+}

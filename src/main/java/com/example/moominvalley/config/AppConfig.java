@@ -1,23 +1,16 @@
 package com.example.moominvalley.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
-import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import java.util.concurrent.TimeUnit;
-
 @Configuration
-@EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
     @Bean
     @Description("Thymeleaf template resolver serving HTML 5")
@@ -25,7 +18,7 @@ public class AppConfig implements WebMvcConfigurer {
 
         var templateResolver = new ClassLoaderTemplateResolver();
 
-        templateResolver.setPrefix("templates/");
+        templateResolver.setPrefix("static/");
         templateResolver.setCacheable(false);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML");
