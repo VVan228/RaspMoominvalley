@@ -27,7 +27,7 @@ public class Para {
 
     private int pair;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-dd-mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     LocalDate week_begining;
 
     @ElementCollection
