@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public interface ScheduleRepo extends JpaRepository<Day, Integer> {
 
     @Query("select para from Para as para " +
-            "where para.teachers.teacherName= :tN " +
+            "join para.teachers t where t.teacherName=:tN " +
             "and para.day= :day")
     Day getScheduleForDayByTeacher(@Param("tN") String teacherName,
                                    @Param("day") int dayId);
@@ -23,7 +23,7 @@ public interface ScheduleRepo extends JpaRepository<Day, Integer> {
                                     @Param("day") int dayId);
 
     @Query("select para from Para as para " +
-            "where para.groups.groupName= :gN " +
+            "join para.groups g where g.groupName= :gN " +
             "and para.day= :day")
     Day getScheduleForDayByGroup(@Param("gN") String groupName,
                                  @Param("day") int dayId);

@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface ListsRepo extends JpaRepository<Para, Integer> {
 
-    @Query("select p.teachers from Para as p")
+    @Query("select distinct t from Para as p join p.teachers t")
     List<Teacher> getAllTeachers();
 
-    @Query("select p.groups from Para as p")
+    @Query("select distinct g from Para as p join p.groups g")
     List<Group> getAllGroups();
 
-    @Query("select p.auditories from Para as p")
+    @Query("select distinct a from Para as p join p.auditories a")
     List<Audience> getAllAuditories();
 }
