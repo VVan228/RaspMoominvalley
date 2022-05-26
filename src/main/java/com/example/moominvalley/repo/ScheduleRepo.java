@@ -15,17 +15,17 @@ public interface ScheduleRepo extends JpaRepository<Para, Integer> {
 
     @Query("select para from Para as para " +
             "join para.teachers t where t.teacherName=:tN " +
-            "and para.day= :day and para.week_begining=:week")
+            "and para.day= :day and para.week_begining=:week order by para.pair")
     List<Para> getScheduleForDayByTeacher(@Param("tN") String teacherName,
                                           @Param("day") int dayId, @Param("week")LocalDate week);
     @Query("select para from Para as para join para.auditories a where a.audienceName=:aN " +
-            "and para.day= :day and para.week_begining=:week")
+            "and para.day= :day and para.week_begining=:week order by para.pair")
     List<Para> getScheduleForDayByAudience(@Param("aN") String ayName,
                                     @Param("day") int dayId, @Param("week")LocalDate week);
 
     @Query("select para from Para as para " +
             "join para.groups g where g.groupName= :gN " +
-            "and para.day= :day and para.week_begining=:week")
+            "and para.day= :day and para.week_begining=:week order by para.pair")
     List<Para> getScheduleForDayByGroup(@Param("gN") String groupName,
                                  @Param("day") int dayId, @Param("week")LocalDate week);
 }

@@ -25,7 +25,7 @@ public class ScheduleService {
             LocalTime.of(11, 45),
             LocalTime.of(13, 45),
             LocalTime.of(15, 30),
-            LocalTime.of(17, 10),
+            LocalTime.  of(17, 10),
             LocalTime.of(18, 45),
             LocalTime.of(20, 20)
     ));
