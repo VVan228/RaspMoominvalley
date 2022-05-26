@@ -1,8 +1,10 @@
 package com.example.moominvalley.controller;
 
 import com.example.moominvalley.model.embeddables.Audience;
+import com.example.moominvalley.model.embeddables.FilterType;
 import com.example.moominvalley.model.embeddables.Group;
 import com.example.moominvalley.model.embeddables.Teacher;
+import com.example.moominvalley.model.entites.Para;
 import com.example.moominvalley.repo.ListsRepo;
 import com.example.moominvalley.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,26 +33,26 @@ public class MainController {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/schedule/byGroup/{groupId}/{date}"
+            value = "/schedule/byGroup/{group}/{date}"
     )
-    public String getScheduleByGroup(
-            @PathVariable int groupId,
+    public List<List<Para>> getScheduleByGroup(
+            @PathVariable String group,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             Model model
     ){
-        return "home";
+        return scheduleService.getWeekScheduleBy(group, date, FilterType.Group);
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/schedule/byTeacher/{teacherId}/{date}"
+            value = "/schedule/byTeacher/{teacher}/{date}"
     )
-    public String getScheduleByTeacher(
-            @PathVariable int teacherId,
+    public List<List<Para>> getScheduleByTeacher(
+            @PathVariable String teacher,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             Model model
     ){
-        return "home";
+        return scheduleService.getWeekScheduleBy(teacher, date, FilterType.Teacher);
     }
 
     @ResponseBody
@@ -59,12 +61,12 @@ public class MainController {
             value = "/schedule/byRoom/{room}/{date}",
             produces = "application/json"
     )
-    public String getScheduleByRoom(
+    public List<List<Para>> getScheduleByRoom(
             @PathVariable String room,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             Model model
     ){
-        return "home";
+        return scheduleService.getWeekScheduleBy(room, date, FilterType.Room);
     }
 
     @ResponseBody
