@@ -21,11 +21,11 @@ public interface ScheduleRepo extends JpaRepository<Day, Integer> {
             "where para.auditories.audienceName= :aN " +
             "and para.day= :day")
     Day getScheduleForDayByAudience(@Param("aN") String ayName,
-                                    @Param("day") int audienceId);
+                                    @Param("day") int dayId);
 
     @Query("select para from Para as para " +
             "where para.groups.groupName= :gN " +
             "and para.day= :day")
     Day getScheduleForDayByGroup(@Param("gN") String groupName,
-                                 @Param("day") int date);
+                                 @Param("day") int dayId);
 }
