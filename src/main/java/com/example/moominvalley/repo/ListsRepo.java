@@ -1,9 +1,9 @@
 package com.example.moominvalley.repo;
 
-import com.example.moominvalley.model.Group;
-import com.example.moominvalley.model.Para;
-import com.example.moominvalley.model.Audience;
-import com.example.moominvalley.model.Teacher;
+import com.example.moominvalley.model.embeddables.Group;
+import com.example.moominvalley.model.entites.Para;
+import com.example.moominvalley.model.embeddables.Audience;
+import com.example.moominvalley.model.embeddables.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

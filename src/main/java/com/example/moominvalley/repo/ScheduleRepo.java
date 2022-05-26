@@ -1,13 +1,10 @@
 package com.example.moominvalley.repo;
 
-import com.example.moominvalley.model.Day;
-import com.example.moominvalley.model.Teacher;
+import com.example.moominvalley.model.embeddables.Day;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDate;
 
 @Repository
 public interface ScheduleRepo extends JpaRepository<Day, Integer> {

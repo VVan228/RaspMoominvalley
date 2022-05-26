@@ -1,6 +1,9 @@
-package com.example.moominvalley.model.events;
+package com.example.moominvalley.model.entites;
 
-import com.example.moominvalley.model.*;
+import com.example.moominvalley.model.embeddables.Audience;
+import com.example.moominvalley.model.embeddables.Group;
+import com.example.moominvalley.model.embeddables.Subject;
+import com.example.moominvalley.model.embeddables.Teacher;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +20,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "events")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

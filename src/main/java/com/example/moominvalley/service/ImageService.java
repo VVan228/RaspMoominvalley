@@ -1,6 +1,6 @@
 package com.example.moominvalley.service;
 
-import com.example.moominvalley.model.Para;
+import com.example.moominvalley.model.entites.Para;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

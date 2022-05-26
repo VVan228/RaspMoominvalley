@@ -1,6 +1,6 @@
-package com.example.moominvalley.model;
+package com.example.moominvalley.model.embeddables;
 
-import lombok.Generated;
+import com.example.moominvalley.model.entites.Para;
 import lombok.Getter;
 import lombok.Setter;
 

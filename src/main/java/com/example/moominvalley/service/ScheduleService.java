@@ -1,19 +1,14 @@
 package com.example.moominvalley.service;
 
-import com.example.moominvalley.model.Day;
-import com.example.moominvalley.model.Para;
-import com.example.moominvalley.model.FilterType;
+import com.example.moominvalley.model.embeddables.Day;
+import com.example.moominvalley.model.embeddables.FilterType;
 import com.example.moominvalley.repo.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.TemporalField;
-import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class ScheduleService {
@@ -49,7 +44,7 @@ public class ScheduleService {
                 }
                 return ans;
             }
-        };
+        }
         return null;
     }
 }

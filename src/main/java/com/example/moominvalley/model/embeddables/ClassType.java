@@ -1,4 +1,4 @@
-package com.example.moominvalley.model;
+package com.example.moominvalley.model.embeddables;
 
 public enum ClassType {
     Lec,
