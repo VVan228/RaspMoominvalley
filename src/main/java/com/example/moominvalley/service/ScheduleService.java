@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
@@ -16,6 +18,17 @@ import java.util.Locale;
 
 @Service
 public class ScheduleService {
+
+    List<LocalTime> times = new ArrayList<>(List.of(
+            LocalTime.of(8, 15),
+            LocalTime.of(10, 0),
+            LocalTime.of(11, 45),
+            LocalTime.of(13, 45),
+            LocalTime.of(15, 30),
+            LocalTime.of(17, 10),
+            LocalTime.of(18, 45),
+            LocalTime.of(20, 20)
+    ));
 
     @Autowired
     private ScheduleRepo scheduleRepo;
@@ -36,21 +49,25 @@ public class ScheduleService {
                 for (int i=1;i<8;i++) {
                     ans.add(scheduleRepo.getScheduleForDayByAudience(name, i, monday));
                 }
-                return ans;
             }
             case Group -> {
                 for (int i=1;i<8;i++) {
                     ans.add(scheduleRepo.getScheduleForDayByGroup(name, i, monday));
                 }
-                return ans;
             }
             case Teacher -> {
                 for (int i=1;i<8;i++) {
                     ans.add(scheduleRepo.getScheduleForDayByTeacher(name, i, monday));
                 }
-                return ans;
             }
         }
-        return null;
+
+        for(List<Para> pairs: ans){
+            for(Para pair: pairs){
+                pair.setPairTimed(LocalDateTime.of(pair.getWeek_begining().plusDays(pair.getDay()), times.get(pair.getPair())));
+            }
+        }
+
+        return ans;
     }
 }

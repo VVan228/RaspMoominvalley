@@ -31,9 +31,11 @@ public class MainController {
         this.scheduleService = scheduleService;
     }
 
+    @ResponseBody
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/schedule/byGroup/{group}/{date}"
+            value = "/schedule/byGroup/{group}/{date}",
+            produces = "application/json"
     )
     public List<List<Para>> getScheduleByGroup(
             @PathVariable String group,
@@ -43,9 +45,11 @@ public class MainController {
         return scheduleService.getWeekScheduleBy(group, date, FilterType.Group);
     }
 
+    @ResponseBody
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/schedule/byTeacher/{teacher}/{date}"
+            value = "/schedule/byTeacher/{teacher}/{date}",
+            produces = "application/json"
     )
     public List<List<Para>> getScheduleByTeacher(
             @PathVariable String teacher,

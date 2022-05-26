@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -43,4 +45,6 @@ public class Para {
 
     @ElementCollection
     private List<Audience>auditories;
+
+    private LocalDateTime pairTimed;
 }
