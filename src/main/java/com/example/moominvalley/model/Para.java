@@ -42,5 +42,5 @@ public class Para {
     private List<Teacher>teachers;
 
     @ElementCollection
-    private List<Room>auditories;
+    private List<Audience>auditories;
 }
